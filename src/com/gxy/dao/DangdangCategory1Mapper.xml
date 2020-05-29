@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxy.dao.DangdangCategory1Mapper">
+    <resultMap id="BaseResultMap" type="com.gxy.entity.DangdangCategory1">
+        <!--@mbg.generated-->
+        <!--@Table DANGDANG_CATEGORY1-->
+        <result column="DD_CATEGORY1_ID" jdbcType="DECIMAL" property="ddCategory1Id"/>
+        <result column="DD_CATEGORY1_NAME" jdbcType="VARCHAR" property="ddCategory1Name"/>
+        <result column="DD_CATEGORY1_CREATE_DATE" jdbcType="TIMESTAMP" property="ddCategory1CreateDate"/>
+        <collection property="listCategory2" ofType="com.gxy.entity.DangdangCategory2">
+            <result column="DD_CATEGORY2_ID" jdbcType="DECIMAL" property="ddCategory2Id"/>
+            <result column="DD_CATEGORY2_NAME" jdbcType="VARCHAR" property="ddCategory2Name"/>
+            <result column="DD_CATEGORY1_ID" jdbcType="DECIMAL" property="ddCategory1Id"/>
+            <result column="DD_CATEGORY2_CREATE_DATE" jdbcType="TIMESTAMP" property="ddCategory2CreateDate"/>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        DD_CATEGORY1_ID, DD_CATEGORY1_NAME, DD_CATEGORY1_CREATE_DATE
+    </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select * from DANGDANG_CATEGORY1 d1 inner join DANGDANG_CATEGORY2 D on d1.dd_category1_id = D.DD_CATEGORY1_ID
+  </select>
+
+</mapper>
