@@ -14,8 +14,18 @@ public class DangdangCategory1 implements Serializable {
     private Date ddCategory1CreateDate;
     @Transient
     private List<DangdangCategory2> listCategory2;
+    @Transient
+    private BigDecimal ddCategory1Count;
 
     private static final long serialVersionUID = 1L;
+
+    public BigDecimal getDdCategory1Count() {
+        return ddCategory1Count;
+    }
+
+    public void setDdCategory1Count(BigDecimal ddCategory1Count) {
+        this.ddCategory1Count = ddCategory1Count;
+    }
 
     public BigDecimal getDdCategory1Id() {
         return ddCategory1Id;
@@ -59,7 +69,8 @@ public class DangdangCategory1 implements Serializable {
                 "ddCategory1Id=" + ddCategory1Id +
                 ", ddCategory1Name='" + ddCategory1Name + '\'' +
                 ", ddCategory1CreateDate=" + ddCategory1CreateDate +
-                ", dangdangCategory2s=" + listCategory2 +
+                ", listCategory2=" + listCategory2 +
+                ", ddCategory1Count=" + ddCategory1Count +
                 '}';
     }
 }

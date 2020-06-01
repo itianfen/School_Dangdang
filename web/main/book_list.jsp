@@ -11,7 +11,7 @@
 <link href="${pageContext.request.contextPath}/css/list.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-2.1.0.js"></script>
 <script type="text/javascript">
 $(function(){
 	var x = 10;
@@ -165,7 +165,7 @@ $(function(){
 						<select id="ddProductPress" style="width:160px">
 						
 						</select>
-						
+
 						<button onclick="searchBook()">查询</button>
 					</div>
 					<div id="divTopPageNavi" class="list_r_title_text3">

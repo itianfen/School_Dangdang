@@ -17,6 +17,12 @@ public class CategoryController {
     @Autowired
     private DangdangCategory1Service dangdangCategory1Service;
 
+    /**
+     * 获取图书目录信息
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("/selectCategory")
     public String selectCategory(HttpServletRequest request) {
         List<DangdangCategory1> dangdangCategory1s = dangdangCategory1Service.selectAll();

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxy.dao.DangdangCategory2Mapper">
+  <resultMap id="BaseResultMap" type="com.gxy.entity.DangdangCategory2">
+    <!--@mbg.generated-->
+    <!--@Table DANGDANG_CATEGORY2-->
+    <result column="DD_CATEGORY2_ID" jdbcType="DECIMAL" property="ddCategory2Id" />
+    <result column="DD_CATEGORY2_NAME" jdbcType="VARCHAR" property="ddCategory2Name" />
+    <result column="DD_CATEGORY1_ID" jdbcType="DECIMAL" property="ddCategory1Id" />
+    <result column="DD_CATEGORY2_CREATE_DATE" jdbcType="TIMESTAMP" property="ddCategory2CreateDate" />
+    <result column="DDCATEGORY2COUNT" jdbcType="DECIMAL" property="ddCategory2Count"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    DD_CATEGORY2_ID, DD_CATEGORY2_NAME, DD_CATEGORY1_ID, DD_CATEGORY2_CREATE_DATE
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+
+select NVL(A.DDCATEGORY2COUNT,0)AS DDCATEGORY2COUNT,B.DD_CATEGORY2_ID, B.DD_CATEGORY2_NAME, B.DD_CATEGORY1_ID, B.DD_CATEGORY2_CREATE_DATE from DANGDANG_CATEGORY2 B full join (select DD_CATEGORY2_NAME,count(1) as DDCATEGORY2COUNT from DANGDANG_PRODUCT inner join DANGDANG_CATEGORY2 D on DANGDANG_PRODUCT.DD_CATEGORY2_ID = D.DD_CATEGORY2_ID group by DD_CATEGORY2_NAME)A on A.DD_CATEGORY2_NAME=B.DD_CATEGORY2_NAME
+
+
+  </select>
+  <select id="totalCategoryCount" resultType="int">
+    select count(1) from DANGDANG_CATEGORY2
+  </select>
+</mapper>

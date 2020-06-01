@@ -7,11 +7,13 @@
         <result column="DD_CATEGORY1_ID" jdbcType="DECIMAL" property="ddCategory1Id"/>
         <result column="DD_CATEGORY1_NAME" jdbcType="VARCHAR" property="ddCategory1Name"/>
         <result column="DD_CATEGORY1_CREATE_DATE" jdbcType="TIMESTAMP" property="ddCategory1CreateDate"/>
+        <result column="DDCATEGORY1COUNT" jdbcType="DECIMAL" property="ddCategory1Count"/>
         <collection property="listCategory2" ofType="com.gxy.entity.DangdangCategory2">
-            <result column="DD_CATEGORY2_ID" jdbcType="DECIMAL" property="ddCategory2Id"/>
-            <result column="DD_CATEGORY2_NAME" jdbcType="VARCHAR" property="ddCategory2Name"/>
-            <result column="DD_CATEGORY1_ID" jdbcType="DECIMAL" property="ddCategory1Id"/>
-            <result column="DD_CATEGORY2_CREATE_DATE" jdbcType="TIMESTAMP" property="ddCategory2CreateDate"/>
+            <result column="DD_CATEGORY2_ID" jdbcType="DECIMAL" property="ddCategory2Id" />
+            <result column="DD_CATEGORY2_NAME" jdbcType="VARCHAR" property="ddCategory2Name" />
+            <result column="DD_CATEGORY1_ID" jdbcType="DECIMAL" property="ddCategory1Id" />
+            <result column="DD_CATEGORY2_CREATE_DATE" jdbcType="TIMESTAMP" property="ddCategory2CreateDate" />
+            <result column="DDCATEGORY2COUNT" jdbcType="DECIMAL" property="ddCategory2Count"/>
         </collection>
     </resultMap>
     <sql id="Base_Column_List">
@@ -19,7 +21,7 @@
         DD_CATEGORY1_ID, DD_CATEGORY1_NAME, DD_CATEGORY1_CREATE_DATE
     </sql>
     <select id="selectAll" resultMap="BaseResultMap">
-    select * from DANGDANG_CATEGORY1 d1 inner join DANGDANG_CATEGORY2 D on d1.dd_category1_id = D.DD_CATEGORY1_ID
+    select * from (select NVL(A.DDCATEGORY2COUNT,0)AS DDCATEGORY2COUNT,B.DD_CATEGORY2_ID, B.DD_CATEGORY2_NAME, B.DD_CATEGORY1_ID, B.DD_CATEGORY2_CREATE_DATE from DANGDANG_CATEGORY2 B full join (select DD_CATEGORY2_NAME,count(1) as DDCATEGORY2COUNT from DANGDANG_PRODUCT inner join DANGDANG_CATEGORY2 D on DANGDANG_PRODUCT.DD_CATEGORY2_ID = D.DD_CATEGORY2_ID group by DD_CATEGORY2_NAME)A on A.DD_CATEGORY2_NAME=B.DD_CATEGORY2_NAME) T inner join (SELECT A.DD_CATEGORY1_ID,A.DD_CATEGORY1_NAME,A.DD_CATEGORY1_CREATE_DATE,B.DDCATEGORY1COUNT from DANGDANG_CATEGORY1 A INNER JOIN (select DANGDANG_CATEGORY1.DD_CATEGORY1_ID,count(1)AS DDCATEGORY1COUNT from DANGDANG_CATEGORY1 full join DANGDANG_CATEGORY2 on DANGDANG_CATEGORY2.DD_CATEGORY1_ID=DANGDANG_CATEGORY1.DD_CATEGORY1_ID group by DANGDANG_CATEGORY1.DD_CATEGORY1_ID) B ON B.DD_CATEGORY1_ID=A.DD_CATEGORY1_ID) R on R.DD_CATEGORY1_ID=T.DD_CATEGORY1_ID
   </select>
 
 </mapper>

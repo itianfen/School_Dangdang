@@ -1,10 +1,10 @@
 package com.gxy.entity;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
+import javax.persistence.Transient;import java.math.BigDecimal;
 import java.util.Date;
 
-public class DangdangCategory2 implements Serializable {
+public class DangdangCategory2 {
+    private static final long serialVersionUID = 1L;
     private BigDecimal ddCategory2Id;
 
     private String ddCategory2Name;
@@ -12,8 +12,21 @@ public class DangdangCategory2 implements Serializable {
     private BigDecimal ddCategory1Id;
 
     private Date ddCategory2CreateDate;
+    @Transient
+    private BigDecimal ddCategory2Count;
 
-    private static final long serialVersionUID = 1L;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public BigDecimal getDdCategory2Count() {
+        return ddCategory2Count;
+    }
+
+    public void setDdCategory2Count(BigDecimal ddCategory2Count) {
+        if (ddCategory2Count==null) ddCategory2Count=BigDecimal.ZERO;
+        this.ddCategory2Count = ddCategory2Count;
+    }
 
     public BigDecimal getDdCategory2Id() {
         return ddCategory2Id;
@@ -54,6 +67,7 @@ public class DangdangCategory2 implements Serializable {
                 ", ddCategory2Name='" + ddCategory2Name + '\'' +
                 ", ddCategory1Id=" + ddCategory1Id +
                 ", ddCategory2CreateDate=" + ddCategory2CreateDate +
+                ", ddCategory2Count=" + ddCategory2Count +
                 '}';
     }
 }
