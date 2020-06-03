@@ -107,8 +107,8 @@ public class CartController {
             if (tempBook.getBookId().equals(new BigDecimal(id))) {
                 tempBook.setBookCount(new BigDecimal(count));
                 cartList.set(i, tempBook);
+                break;
             }
-            break;
         }
         JSONObject result = new JSONObject();
         result.put("status", true);

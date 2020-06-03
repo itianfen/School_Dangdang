@@ -1,7 +1,6 @@
 package com.gxy.service;
 
 import com.gxy.entity.DangdangAddress;
-import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,7 +13,7 @@ public interface DangdangAddressService {
      * @param dangdangAddress
      * @return
      */
-    int insert(DangdangAddress dangdangAddress);
+    BigDecimal insert(DangdangAddress dangdangAddress);
 
     /**
      * 根据用户ID查询地址
@@ -31,4 +30,6 @@ public interface DangdangAddressService {
      * @return
      */
     List<DangdangAddress> selectByAddressId(BigDecimal addressId);
+
+    BigDecimal checkAndReturnAddressId(String addressReceiveName,String addressAdd,String addressZipcode,String addressMobile,BigDecimal userId);
 }

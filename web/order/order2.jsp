@@ -118,7 +118,7 @@
 				$.ajax({
 					url:"${pageContext.request.contextPath}/order/createOrder.do",
 					type:"POST",
-					data:{"addressReceiveName":addressAdd,
+					data:{"addressReceiveName":addressReceiveName,
 						"addressAdd":addressAdd,
 						"addressZipcode":addressZipcode,
 						"addressMobile":addressMobile},

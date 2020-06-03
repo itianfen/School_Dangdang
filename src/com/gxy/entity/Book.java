@@ -13,6 +13,14 @@ public class Book implements Serializable {
     private BigDecimal bookDdprice;
     private BigDecimal bookCount;
 
+    public Book(BigDecimal bookId, String bookName, BigDecimal bookPrice, BigDecimal bookDdprice, BigDecimal bookCount) {
+        this.bookId = bookId;
+        this.bookName = bookName;
+        this.bookPrice = bookPrice;
+        this.bookDdprice = bookDdprice;
+        this.bookCount = bookCount;
+    }
+
     public Book(DangdangProduct product) {
         this.bookId = product.getDdProductId();
         this.bookName = product.getDdProductName();

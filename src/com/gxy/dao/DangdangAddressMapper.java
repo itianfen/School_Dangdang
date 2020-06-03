@@ -32,4 +32,10 @@ public interface DangdangAddressMapper {
      * @return
      */
     List<DangdangAddress> selectByAddressId(@Param("addressId") BigDecimal addressId);
+
+    List<BigDecimal> selectAddressIdByAddressReceiveNameAndAddressAddAndAddressZipcodeAndAddressMobileAndDdUserId(@Param("addressReceiveName")String addressReceiveName,@Param("addressAdd")String addressAdd,@Param("addressZipcode")String addressZipcode,@Param("addressMobile")String addressMobile,@Param("ddUserId")BigDecimal ddUserId);
+
+
+
+
 }

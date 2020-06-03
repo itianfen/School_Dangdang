@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gxy.dao.DangdangOrderMapper">
+  <resultMap id="BaseResultMap" type="com.gxy.entity.DangdangOrder">
+    <!--@mbg.generated-->
+    <!--@Table DANGDANG_ORDER-->
+    <result column="ORDER_ID" jdbcType="DECIMAL" property="orderId" />
+    <result column="ORDER_SSID" jdbcType="VARCHAR" property="orderSsid" />
+    <result column="ORDER_TOTALPRICE" jdbcType="DECIMAL" property="orderTotalprice" />
+    <result column="ORDER_STATE" jdbcType="DECIMAL" property="orderState" />
+    <result column="DD_USER_ID" jdbcType="DECIMAL" property="ddUserId" />
+    <result column="ORDER_CREATEDATE" jdbcType="TIMESTAMP" property="orderCreatedate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ORDER_ID, ORDER_SSID, ORDER_TOTALPRICE, ORDER_STATE, DD_USER_ID, ORDER_CREATEDATE
+  </sql>
+  <insert id="insert" parameterType="com.gxy.entity.DangdangOrder">
+    <!--@mbg.generated-->
+    <selectKey keyProperty="orderId" order="BEFORE" resultType="java.math.BigDecimal">
+      select DD_ORDER_ID_SEQ.nextval from dual
+    </selectKey>
+    insert into DANGDANG_ORDER (ORDER_ID, ORDER_SSID, ORDER_TOTALPRICE, 
+      ORDER_STATE, DD_USER_ID
+      )
+    values (#{orderId,jdbcType=DECIMAL}, #{orderSsid,jdbcType=VARCHAR}, #{orderTotalprice,jdbcType=DECIMAL}, 
+      #{orderState,jdbcType=DECIMAL}, #{ddUserId,jdbcType=DECIMAL}
+      )
+  </insert>
+</mapper>
