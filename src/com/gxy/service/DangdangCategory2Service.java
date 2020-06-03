@@ -1,7 +1,10 @@
 package com.gxy.service;
 
+import com.gxy.entity.DangdangCategory1;
 import com.gxy.entity.DangdangCategory2;
+import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface DangdangCategory2Service{
@@ -17,5 +20,7 @@ public interface DangdangCategory2Service{
      * @return
      */
     List<DangdangCategory2> selectAll();
+
+    List<DangdangCategory2>selectByDdCategory1Id(BigDecimal category1Id);
 
 }

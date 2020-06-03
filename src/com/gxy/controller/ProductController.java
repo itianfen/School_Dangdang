@@ -1,6 +1,7 @@
 package com.gxy.controller;
 
 import com.gxy.entity.DangdangCategory1;
+import com.gxy.entity.DangdangCategory2;
 import com.gxy.entity.DangdangProduct;
 import com.gxy.service.DangdangCategory1Service;
 import com.gxy.service.DangdangCategory2Service;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -76,17 +76,22 @@ public class ProductController {
         request.setAttribute("product", dangdangProduct);
         return "forward:/main/product.jsp";
     }
+
     //TODO:一级二级目录混合查询 根据书名 作者 出版社 查询
     @RequestMapping("/selectProductAndCategory")
     public String selectProductAndCategory(String id, HttpServletRequest request) {
         List<DangdangCategory1> dangdangCategory1s = dangdangCategory1Service.selectAll();
         request.setAttribute("totalCategoryCount", dangdangCategory2Service.totalCategoryCount());
         request.setAttribute("categoryList", dangdangCategory1s);
-        for (DangdangCategory1 dangdangCategory1 : dangdangCategory1s) {
-            if (dangdangCategory1.getDdCategory1Id().equals(id)) {
-                request.setAttribute("productList", dangdangCategory1.getListCategory2());
-            }
+        request.setAttribute("chooseId", id);
+        List<DangdangProduct>dangdangProducts;
+        if (Integer.parseInt(id) > 100) {
+            dangdangProducts=dangdangProductService.selectByDdCategory2Id(new BigDecimal(id));
+        } else {
+            List<DangdangCategory2> dangdangCategory2s = dangdangCategory2Service.selectByDdCategory1Id(new BigDecimal(id));
+            dangdangProducts=dangdangProductService.selectByDdCategory2IdList(dangdangCategory2s);
         }
+        request.setAttribute("productList",dangdangProducts);
         return "forward:/main/book_list.jsp";
     }
 }

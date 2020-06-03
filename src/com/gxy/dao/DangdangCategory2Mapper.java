@@ -1,7 +1,10 @@
 package com.gxy.dao;
 
+import com.gxy.entity.DangdangCategory1;
 import com.gxy.entity.DangdangCategory2;
+import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface DangdangCategory2Mapper {
@@ -18,4 +21,6 @@ public interface DangdangCategory2Mapper {
      * @return
      */
     int totalCategoryCount();
+
+    List<DangdangCategory2>selectByDdCategory1Id(@Param("category1Id")BigDecimal category1Id);
 }

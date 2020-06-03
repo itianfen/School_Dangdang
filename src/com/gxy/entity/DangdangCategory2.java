@@ -1,6 +1,7 @@
 package com.gxy.entity;
 
-import javax.persistence.Transient;import java.math.BigDecimal;
+import javax.persistence.Transient;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class DangdangCategory2 {
@@ -24,7 +25,7 @@ public class DangdangCategory2 {
     }
 
     public void setDdCategory2Count(BigDecimal ddCategory2Count) {
-        if (ddCategory2Count==null) ddCategory2Count=BigDecimal.ZERO;
+        if (ddCategory2Count == null) ddCategory2Count = BigDecimal.ZERO;
         this.ddCategory2Count = ddCategory2Count;
     }
 

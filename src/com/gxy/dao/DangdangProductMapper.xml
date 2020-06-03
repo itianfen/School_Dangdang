@@ -52,4 +52,18 @@
     from DANGDANG_PRODUCT
     where DD_PRODUCT_ID=#{ddProductId,jdbcType=DECIMAL}
   </select>
+
+  <select id="selectByDdCategory2Id" parameterType="decimal" resultMap="BaseResultMap">
+    select * from DANGDANG_PRODUCT where DD_CATEGORY2_ID = #{categoryId,jdbcType=DECIMAL}
+  </select>
+
+  <select id="selectByDdCategory2IdList" resultMap="BaseResultMap" parameterType="list">
+    select <include refid="Base_Column_List"/> from DANGDANG_PRODUCT
+    <where>
+      DD_CATEGORY2_ID in
+      <foreach collection="list" item="c" separator="," open="(" close=")" index="">
+          #{c.ddCategory2Id,jdbcType=DECIMAL}
+      </foreach>
+    </where>
+  </select>
 </mapper>
